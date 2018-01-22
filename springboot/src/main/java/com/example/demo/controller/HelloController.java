@@ -5,6 +5,11 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +25,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/hello")
-public class HelloController extends BaseController{
+public class HelloController extends BaseController implements InitializingBean,DisposableBean{
 	
 	@Autowired
 	private UserMapper userMapper;
@@ -46,5 +51,24 @@ public class HelloController extends BaseController{
 		return model;
 		
 	}
-
+	
+	@PostConstruct
+	private void postConstruct() {
+		logger.info("初始化方法前调用1");
+	}
+	
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		logger.info("初始化方法前调用2");
+	}
+	
+	@PreDestroy
+	private void preDestroy() {
+		logger.info("初始化方法后调用1");
+	}
+	
+	@Override
+	public void destroy() throws Exception {
+		logger.info("初始化方法后调用2");
+	}
 }
