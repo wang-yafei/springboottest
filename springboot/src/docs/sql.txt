@@ -1,0 +1,13 @@
+CREATE TABLE `u_base_user` (
+  `id` int(11) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `userid` varchar(30) DEFAULT '' COMMENT '用户标示',
+  `userName` varchar(30) DEFAULT '' COMMENT '用户名',
+  `address` varchar(30) DEFAULT '' COMMENT '住址',
+  `phoneNum` varchar(11) DEFAULT '' COMMENT '手机号',
+  `age` tinyint(4) DEFAULT NULL COMMENT '年龄',
+  `email` varchar(30) DEFAULT '' COMMENT '邮箱',
+  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `updateTime` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户基本信息表';
+

@@ -3,6 +3,6 @@
 <mapper namespace="com.example.demo.mapper.UserMapper">
   
   <select id="getUser" resultType="java.util.Map">
-    select * from db_comm.u_base_user where USER_ID = '13430000001'
+    select * from u_base_user where userId = '13430000001'
   </select>
 </mapper>
