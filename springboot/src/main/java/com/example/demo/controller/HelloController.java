@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.datasource.DataSourceHolder;
-import com.example.demo.datasource.TargetDataSource;
+import com.example.demo.datasource.muldatasource.DataSourceHolder;
+import com.example.demo.datasource.muldatasource.TargetDataSource;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.User;
 

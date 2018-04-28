@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.Vector;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.commons.io.IOUtils;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;

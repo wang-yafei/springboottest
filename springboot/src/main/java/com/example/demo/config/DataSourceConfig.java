@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import com.example.demo.datasource.DynamicDataSource;
+import com.example.demo.datasource.muldatasource.DynamicDataSource;
 
 @Configuration
 public class DataSourceConfig {
