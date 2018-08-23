@@ -1,4 +1,4 @@
-package io.anyway.galaxy.message;
+package com.example.demo.datasource.tcc.message;
 
 import java.io.Serializable;
 import java.sql.Date;

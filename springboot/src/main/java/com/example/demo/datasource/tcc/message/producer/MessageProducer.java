@@ -1,4 +1,4 @@
-package io.anyway.galaxy.message.producer;
+package com.example.demo.datasource.tcc.message.producer;
 
 /**
  * 消息生产者接口

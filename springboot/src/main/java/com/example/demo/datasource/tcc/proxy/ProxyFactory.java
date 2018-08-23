@@ -1,6 +1,7 @@
-package io.anyway.galaxy.proxy;
+package com.example.demo.datasource.tcc.proxy;
 
-import javassist.*;
+
+import org.apache.ibatis.javassist.*;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

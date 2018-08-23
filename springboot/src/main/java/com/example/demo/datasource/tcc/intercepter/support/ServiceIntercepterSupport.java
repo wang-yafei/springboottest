@@ -2,6 +2,12 @@ package com.example.demo.datasource.tcc.intercepter.support;
 
 import java.sql.SQLException;
 
+import com.example.demo.datasource.tcc.exception.DistributedTransactionException;
+import com.example.demo.datasource.tcc.message.TransactionMessageServiceImpl;
+import com.example.demo.datasource.tcc.repository.TransactionIdGenerator;
+import com.example.demo.datasource.tcc.repository.TransactionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,9 +22,6 @@ import com.example.demo.datasource.tcc.domain.RetryCount;
 import com.example.demo.datasource.tcc.domain.TransactionInfo;
 import com.example.demo.datasource.tcc.intercepter.ServiceIntercepter;
 
-import io.anyway.galaxy.exception.DistributedTransactionException;
-import io.anyway.galaxy.repository.TransactionIdGenerator;
-import io.anyway.galaxy.repository.TransactionRepository;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,6 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class ServiceIntercepterSupport implements ServiceIntercepter {
+
+    private static final Logger log = LoggerFactory.getLogger(ServiceIntercepterSupport.class);
 
     @Autowired
     private TransactionRepository transactionRepository;

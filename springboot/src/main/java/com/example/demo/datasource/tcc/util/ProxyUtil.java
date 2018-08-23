@@ -1,10 +1,11 @@
-package io.anyway.galaxy.util;
-
-import io.anyway.galaxy.proxy.ProxyFactory;
-import io.anyway.galaxy.proxy.TXOperationProxy;
-import org.springframework.util.ReflectionUtils;
+package com.example.demo.datasource.tcc.util;
 
 import java.lang.reflect.Method;
+
+import org.springframework.util.ReflectionUtils;
+
+import com.example.demo.datasource.tcc.proxy.ProxyFactory;
+import com.example.demo.datasource.tcc.proxy.TXOperationProxy;
 
 /**
  * Created by xiong.j on 2016/7/25.
@@ -39,7 +40,8 @@ public class ProxyUtil {
      * @param args 参数值
      */
     public static void invokeCancel(String className, Object target, Class<?>[] types, String[] targetMethod, Object[] args) throws Throwable {
-        TXOperationProxy txOperationProxy = ProxyFactory.getProxy(className, target, TXOperationProxy.class, targetMethod, types);
+        TXOperationProxy txOperationProxy = ProxyFactory
+                .getProxy(className, target, TXOperationProxy.class, targetMethod, types);
         txOperationProxy.invokeCancel(target, args);
     }
 

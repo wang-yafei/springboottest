@@ -1,8 +1,7 @@
-package io.anyway.galaxy.message;
+package com.example.demo.datasource.tcc.message;
 
-import io.anyway.galaxy.common.TransactionStatusEnum;
-import io.anyway.galaxy.context.TXContext;
-import io.anyway.galaxy.domain.TransactionInfo;
+import com.example.demo.datasource.tcc.common.TransactionStatusEnum;
+import com.example.demo.datasource.tcc.context.TXContext;
 
 /**
  * Created by yangzz on 16/7/27.
