@@ -1,16 +1,13 @@
 package com.example.demo.guava;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
-import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.*;
 
 /**
@@ -42,10 +39,7 @@ public class FutureTest implements Supplier<FutureTest> {
         long startTime = System.currentTimeMillis();
 
         // call 异常
-        ListenableFuture<Integer> callException = service.submit(() -> {
-            Thread.sleep(1000);
-            throw new RuntimeException("callable exception");
-        });
+        ListenableFuture<Integer> callException = service.submit(() -> 1 / 0);
 
         // call 正常返回
         ListenableFuture<Integer> callResult = service.submit(() -> ThreadLocalRandom.current().nextInt(100));
@@ -68,6 +62,8 @@ public class FutureTest implements Supplier<FutureTest> {
         addListener(callException);
 
         listListenableFuture(callException, callResult, runResult, runVoid);
+
+        catchingAsync(callException);
 
     }
 
@@ -123,6 +119,17 @@ public class FutureTest implements Supplier<FutureTest> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * 只有当出现指定异常时会执行返回的ListenableFuture
+     * 
+     * @param runException
+     */
+    private void catchingAsync(ListenableFuture runException) {
+
+        Futures.catchingAsync(runException, ArrayIndexOutOfBoundsException.class,
+                a -> service.submit(() -> System.out.println("catchingAsync exception: " + a)));
     }
 
     // 测试
