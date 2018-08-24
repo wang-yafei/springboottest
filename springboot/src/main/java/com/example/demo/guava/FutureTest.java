@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.base.Function;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.google.common.util.concurrent.*;
@@ -34,7 +35,7 @@ public class FutureTest implements Supplier<FutureTest> {
     /**
      * 测试guavafuture正常执行和回调
      */
-    public void futureCallAndRunTest() {
+    public void futureCallAndRunTest() throws Exception {
 
         long startTime = System.currentTimeMillis();
 
@@ -64,6 +65,8 @@ public class FutureTest implements Supplier<FutureTest> {
         listListenableFuture(callException, callResult, runResult, runVoid);
 
         catchingAsync(callException);
+
+        transform(callResult);
 
     }
 
@@ -132,11 +135,32 @@ public class FutureTest implements Supplier<FutureTest> {
                 a -> service.submit(() -> System.out.println("catchingAsync exception: " + a)));
     }
 
+    /**
+     * 第一个执行完成的结果,作为第二个任务执行的参数
+     * 
+     * @param listenableFuture
+     * @throws Exception
+     */
+    public void transform(ListenableFuture listenableFuture) throws Exception {
+        Function<Integer, Boolean> function = integer -> integer > 0;
+        AsyncFunction<Integer, Boolean> asyncFunction = integer -> integer > 0 ? Futures.immediateFuture(Boolean.TRUE)
+                : Futures.immediateFuture(Boolean.FALSE);
+        ListenableFuture<Boolean> transform = Futures.transformAsync(listenableFuture, asyncFunction);
+
+        System.out.println("transform:" + JSON.toJSONString(transform.get()));
+    }
+
     // 测试
     public static void main(String[] args) throws Exception {
         FutureTest test = FutureTest.staticGet();
         test.futureCallAndRunTest();
-        new Thread(() -> test.futureCallAndRunTest()).start();
+        new Thread(() -> {
+            try {
+                test.futureCallAndRunTest();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
 }
