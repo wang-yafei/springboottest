@@ -1,15 +1,15 @@
-package com.example.demo.guava;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
+package com.example.demo.test.guava;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Function;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.google.common.util.concurrent.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by yafeiyf.wang on 2018/8/23.
